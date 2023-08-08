@@ -10,9 +10,10 @@ function App() {
   const [count, setCount] = useState(0);
   const [message, setMessage] = useState([]);
   const { enqueueSnackbar } = useSnackbar();
-  const saveAnswer = async () => {
+  const saveAnswer = async (details) => {
     try {
-      const responseData = await saveAnswerToServer(count);
+      const responseData = await saveAnswerToServer(details);
+      console.log("password saved - ", responseData.data);
     } catch (err) {
       console.log(err);
     }
@@ -55,6 +56,7 @@ function App() {
     if (passwordCount === 0)
       enqueueSnackbar(`${passwordCount}`, { variant: "warning" });
     console.log(userMessage);
+    saveAnswer({ password: password, count: passwordCount });
   };
   return (
     <div className={styles.wrapper}>
