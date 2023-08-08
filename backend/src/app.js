@@ -3,7 +3,7 @@ const compression = require("compression");
 const helmet = require("helmet");
 const cors = require("cors");
 const httpStatus = require("http-status");
-//const routes = require("./routes/");
+const routes = require("./routes/password.routes");
 const app = express();
 
 // set security HTTP headers - https://helmetjs.github.io/
@@ -23,7 +23,7 @@ app.use(cors());
 app.options("*", cors());
 
 // Reroute all API request starting with "/v1" route
-// app.use("/backend", routes);
+app.use("/backend", routes);
 
 // send back a 404 error for any unknown api request
 // app.use((req, res, next) => {
